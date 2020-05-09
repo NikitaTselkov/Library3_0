@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Model
+namespace Model.UserFolder
 {
     [DataContract]
     public class User
@@ -10,7 +10,13 @@ namespace Model
         /// Имя.
         /// </summary>
         [DataMember]
-        public string Firstname { get; set; }
+        public string Firstname { get; private set; }
+
+        /// <summary>
+        /// Пароль.
+        /// </summary>
+        [DataMember]
+        public string Password { get; private set; }
 
         /// <summary>
         /// Фамилия.
@@ -35,9 +41,6 @@ namespace Model
         /// </summary>
         [DataMember]
         public Access Access { get; set; }
-
-        [DataMember]
-        public string Password { get; set; }
 
 
         /// <summary>
@@ -81,6 +84,8 @@ namespace Model
         /// <param name="pasword"> Пароль. </param>
         public User(string firstname, string pasword)
         {
+            #region Проверка Условий
+
             if (string.IsNullOrWhiteSpace(firstname))
             {
                 throw new ArgumentNullException(nameof(firstname), "firstname не может быть null");
@@ -89,6 +94,8 @@ namespace Model
             {
                 throw new ArgumentNullException(nameof(pasword), "pasword не может быть null");
             }
+
+            #endregion
 
             Password = pasword;
 

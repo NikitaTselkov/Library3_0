@@ -1,17 +1,16 @@
-﻿using System;
+﻿using Model.Interfaces;
+using Model.UserFolder;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Text.Json;
+
 
 namespace Model.Controllers
 {
     /// <summary>
     /// Контроллер пользователя.
     /// </summary>
-    public class UserController
+    public class UserController : ISave, ILoad
     {
         /// <summary>
         /// Пользователи.
@@ -28,6 +27,10 @@ namespace Model.Controllers
         /// </summary>
         public bool IsNewUser { get; } = false;
 
+        /// <summary>
+        /// Адрес User
+        /// </summary>
+        private const string USER_PATH = "userSave.json";
 
         /// <summary>
         /// Создание нового контроллера пользователя.
@@ -36,6 +39,8 @@ namespace Model.Controllers
         /// <param name="pasword"> Пароль. </param>
         public UserController(string firstname, string pasword)
         {
+            #region Проверка Условий
+
             if (string.IsNullOrWhiteSpace(firstname))
             {
                 throw new ArgumentNullException(nameof(firstname), "firstname не может быть null");
@@ -45,9 +50,13 @@ namespace Model.Controllers
                 throw new ArgumentNullException(nameof(pasword), "pasword не может быть null");
             }
 
+            #endregion
+
             pasword = pasword.MyGetHashCode();
 
-            Users = GetUsers();
+            Users = ILoad.GetUsers<List<User>>(USER_PATH);
+
+            Users ??= new List<User>();
 
             CurrentUser = Users.SingleOrDefault(u => u.Firstname == firstname && u.Password == pasword);
 
@@ -56,9 +65,8 @@ namespace Model.Controllers
                 CurrentUser = new User(firstname, pasword);
                 Users.Add(CurrentUser);
                 IsNewUser = true;
-                Save();
+                ISave.Save(USER_PATH, Users);
             }
-
         }
 
         /// <summary>
@@ -87,47 +95,7 @@ namespace Model.Controllers
             CurrentUser.Age = age;
             CurrentUser.Gender = gender;
             CurrentUser.Access = access;
-            Save();
-
-        }
-
-        /// <summary>
-        /// Сохранить данные пользователя.
-        /// </summary>    
-        public void Save()
-        {
-            var formatter = new DataContractJsonSerializer(typeof(List<User>));
-
-            using (var fs = new FileStream("userSave.json", FileMode.OpenOrCreate))
-            {
-                formatter.WriteObject(fs, Users);
-            }
-        }
-
-        /// <summary>
-        /// Загрузить данные пользователя.
-        /// </summary>
-        /// <returns> Пользователи. </returns>
-        private List<User> GetUsers()
-        {
-            var formatter = new DataContractJsonSerializer(typeof(List<User>));
-
-
-            using (var fs = new FileStream("userSave.json", FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0)
-                {
-                    if (formatter.ReadObject(fs) is List<User> users)
-                    {
-                        return users;
-                    }
-                    else
-                    {
-                        return new List<User>();
-                    }
-                }
-                return new List<User>();
-            }
+            ISave.Save(USER_PATH, Users);
 
         }
     }

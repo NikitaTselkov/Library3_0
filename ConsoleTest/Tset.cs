@@ -1,4 +1,4 @@
-﻿using Model;
+﻿using Model.UserFolder;
 using Model.Controllers;
 using System;
 using System.Collections.Generic;
@@ -37,7 +37,7 @@ namespace ConsoleTest
 
             Console.WriteLine(User.CurrentUser);
 
-        }
+        } 
 
     }
 }

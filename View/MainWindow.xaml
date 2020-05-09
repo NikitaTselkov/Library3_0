@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
-
+        <TextBox FontSize="26" AcceptsReturn="True" AcceptsTab="True" />
     </Grid>
 </Window>

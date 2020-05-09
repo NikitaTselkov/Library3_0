@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model
+namespace Model.UserFolder
 {
-    public enum Access
+    public enum Gender
     {
-        User,
-        Admin
+        Male,
+        Female
     }
 }
