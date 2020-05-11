@@ -1,5 +1,4 @@
-﻿using Model.Interfaces;
-using Model.UserFolder;
+﻿using Model.UserFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace Model.Controllers
     /// <summary>
     /// Контроллер пользователя.
     /// </summary>
-    public class UserController : ISave, ILoad
+    public class UserController : AbstractController
     {
         /// <summary>
         /// Пользователи.
@@ -54,18 +53,15 @@ namespace Model.Controllers
 
             pasword = pasword.MyGetHashCode();
 
-            Users = ILoad.GetUsers<List<User>>(USER_PATH);
-
-            Users ??= new List<User>();
+            Users = GetListItemData<User>(USER_PATH);
 
             CurrentUser = Users.SingleOrDefault(u => u.Firstname == firstname && u.Password == pasword);
 
             if (CurrentUser == null)
             {
                 CurrentUser = new User(firstname, pasword);
-                Users.Add(CurrentUser);
-                IsNewUser = true;
-                ISave.Save(USER_PATH, Users);
+
+                IsNewUser = SaveItems(Users, USER_PATH, CurrentUser);
             }
         }
 
@@ -100,10 +96,11 @@ namespace Model.Controllers
 
         }
 
-        public UserController()
-        { 
-        
-        }
+        /// <summary>
+        /// Пустой конструктор.
+        /// </summary>
+        public UserController() { }
+
 
     }
 }

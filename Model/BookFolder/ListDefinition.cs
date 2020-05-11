@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Model.BookFolder
 {
+    [DataContract]
     public class ListDefinition
     {
         /// <summary>
         /// Заголовок.
         /// </summary>
-        public string Title { get; }
+        [DataMember]
+        public string Title { get; set; }
 
         /// <summary>
         /// Определение.
         /// </summary>
-        public string Definition { get; }
+        [DataMember]
+        public string Definition { get; set; }
 
         /// <summary>
         /// Создание нового контроллера Списка.

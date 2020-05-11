@@ -9,7 +9,7 @@ namespace Model.Interfaces
 {
     public interface ILoad
     {
-        static T GetUsers<T>(string path)
+        static T GetData<T>(string path)
         {
             var formatter = new DataContractJsonSerializer(typeof(T));
 

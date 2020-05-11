@@ -1,89 +1,73 @@
 ﻿using Model.BookFolder;
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+using System.Linq;
 
-namespace Model
+namespace Model.Controllers
 {
-    [DataContract]
-    public class Book
+    public class BookController : AbstractController
     {
-        /// <summary>
-        /// Заголовок.
-        /// </summary>
-        [DataMember]
-        public string Title { get; private set; }
 
         /// <summary>
-        /// Код.
+        /// Список Книг.
         /// </summary>
-        [DataMember]
-        public string Code { get; set; }
+        public List<Book> Books { get; set; }
 
         /// <summary>
-        /// Библиотеки.
+        /// Текущая книга.
         /// </summary>
-        [DataMember]
-        public string Using { get; set; }
+        public Book CurrentBook { get; set; }
 
         /// <summary>
-        /// Шаблон записи.
+        /// Явлектся ли книга новой.
         /// </summary>
-        [DataMember]
-        public string Template { get; set; }
+        public bool IsNewBook { get; set; }
 
         /// <summary>
-        /// Определение.
+        /// Адрес Book.
         /// </summary>
-        [DataMember]
-        public IEnumerable<ListDefinition> Definition { get; set; }
+        private const string BOOK_PATH = "bookSave.json";
 
         /// <summary>
-        /// Свойства.
+        /// Создание нового контроллера книги.
         /// </summary>
-        [DataMember]
-        public IEnumerable<ListDefinition> Propertie { get; set; }
-
-        /// <summary>
-        /// Вернуть.
-        /// </summary>
-        [DataMember]
-        public IEnumerable<ListDefinition> Return { get; set; }
-
-
-        public Book(string _title)
+        /// <param name="_title"> Заголовок. </param>
+        public BookController(string _title)
         {
             if (string.IsNullOrWhiteSpace(_title))
             {
                 throw new ArgumentNullException("_title не может быть null", nameof(_title));
             }
 
-            Title = _title;
+            Books = GetListItemData<Book>(BOOK_PATH);
+
+            CurrentBook = Books.SingleOrDefault(b => b.Title == _title);
+
+            if (CurrentBook == null)
+            {
+                CurrentBook = new Book(_title);
+
+                IsNewBook = SaveItems(Books, BOOK_PATH, CurrentBook);
+            }
+
         }
 
-
         /// <summary>
-        /// Создание нового конструктора book.
+        /// Задает книге не достающии данные.
         /// </summary>
-        /// <param name="_title"> Заголовок. </param>
         /// <param name="_code"> Код. </param>
         /// <param name="_using"> Библиотеки. </param>
         /// <param name="_template"> Шаблон записи. </param>
-        /// <param name="_definition"> Определения. </param>
+        /// <param name="_definition"> Определение. </param>
         /// <param name="_propertie"> Свойства. </param>
-        /// <param name="_return"> Возврвщаемый Тип. </param>
-        public Book(string _title, string _code, string _using, string _template,
+        /// <param name="_return"> Возвращаемый тип. </param>
+        public void SetNewBookData(string _code, string _using, string _template,
             IEnumerable<ListDefinition> _definition,
             IEnumerable<ListDefinition> _propertie,
             IEnumerable<ListDefinition> _return)
         {
             #region Проверка Условий
 
-            if (string.IsNullOrWhiteSpace(_title))
-            {
-                throw new ArgumentNullException("_title не может быть null", nameof(_title));
-            }
             if (string.IsNullOrWhiteSpace(_code))
             {
                 throw new ArgumentNullException("_code не может быть null", nameof(_code));
@@ -109,21 +93,25 @@ namespace Model
                 throw new ArgumentNullException("_return не может быть null", nameof(_return));
             }
 
+
             #endregion
 
-            Title = _title;
-            Code = _code;
-            Using = _using;
-            Template = _template;
-            Definition = _definition;
-            Propertie = _propertie;
-            Return = _return;
+            CurrentBook.Code = _code;
+            CurrentBook.Using = _using;
+            CurrentBook.Template = _template;
+            CurrentBook.Definition = _definition;
+            CurrentBook.Propertie = _propertie;
+            CurrentBook.Return = _return;
+            IsNewBook = false;
+            ISave.Save(BOOK_PATH, Books);
+
         }
 
-        public override string ToString()
-        {
-            return string.Format("Title: {0}, Code: {1}, Using: {2}, Template: {3}", Title, Code, Using, Template);
-        }
+
+        /// <summary>
+        /// Пустой конструктор.
+        /// </summary>
+        public BookController() { }
 
     }
 }
