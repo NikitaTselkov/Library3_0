@@ -1,0 +1,31 @@
+﻿<Page x:Class="View.Pages.RegisetrUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="460"
+      Title="RegisetrUserPage"
+      DataContext="{Binding MainUser, Source={StaticResource Locator}}">
+
+    <Grid Background="{StaticResource Gray}">
+
+        <StackPanel Margin="0 8">
+            
+            <TextBox Text="{Binding Name}" Tag="Name" Style="{StaticResource InputUserData}" />
+            <TextBox Text="{Binding LastName}" Tag="Surname" Style="{StaticResource InputUserData}" />
+            <TextBox Text="{Binding Age, StringFormat=S}" Tag="Age" Style="{StaticResource InputUserData}" />
+            <DockPanel Margin="23 8">
+                <RadioButton Content="Male" Command="{Binding SelectGender}" CommandParameter="0" Style="{StaticResource SelectGenderButton}" HorizontalAlignment="Left" />
+                <RadioButton Content="Female" Command="{Binding SelectGender}" CommandParameter="1" Style="{StaticResource SelectGenderButton}" HorizontalAlignment="Right" />
+            </DockPanel>
+            <TextBox Text="{Binding Pasword}" Tag="Pasword" Style="{StaticResource InputUserData}" />
+            <TextBox Text="{Binding Pasword}" Tag="Pasword" Style="{StaticResource InputUserData}" />
+
+            <Button Content="Connect" Command="{Binding Register}" Style="{StaticResource ConnectButton}" Width="400" Height="40" Margin="0 8" FontSize="35" />
+
+        </StackPanel>
+
+    </Grid>
+</Page>

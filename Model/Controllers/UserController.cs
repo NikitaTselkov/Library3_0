@@ -15,17 +15,17 @@ namespace Model.Controllers
         /// <summary>
         /// Пользователи.
         /// </summary>
-        public List<User> Users { get; }
+        public List<User> Users { get; set; }
 
         /// <summary>
         /// Текущий пользователь.
         /// </summary>
-        public User CurrentUser { get; }
+        public User CurrentUser { get; set; }
 
         /// <summary>
         /// Является ли пользователь новым.
         /// </summary>
-        public bool IsNewUser { get; } = false;
+        public bool IsNewUser { get; set; } = false;
 
         /// <summary>
         /// Адрес User
@@ -60,7 +60,7 @@ namespace Model.Controllers
 
             CurrentUser = Users.SingleOrDefault(u => u.Firstname == firstname && u.Password == pasword);
 
-            if(CurrentUser == null)
+            if (CurrentUser == null)
             {
                 CurrentUser = new User(firstname, pasword);
                 Users.Add(CurrentUser);
@@ -82,7 +82,7 @@ namespace Model.Controllers
 
             if (string.IsNullOrWhiteSpace(lastName))
             {
-                throw new ArgumentNullException(nameof(lastName), "firstname не может быть null");
+                throw new ArgumentNullException(nameof(lastName), "lastName не может быть null");
             }
             if (age <= 0 || age > 150)
             {
@@ -95,8 +95,15 @@ namespace Model.Controllers
             CurrentUser.Age = age;
             CurrentUser.Gender = gender;
             CurrentUser.Access = access;
+            IsNewUser = false;
             ISave.Save(USER_PATH, Users);
 
         }
+
+        public UserController()
+        { 
+        
+        }
+
     }
 }

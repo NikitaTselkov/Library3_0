@@ -1,45 +1,54 @@
 ﻿using Model.BookFolder;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Model
 {
+    [DataContract]
     public class Book
     {
         /// <summary>
         /// Заголовок.
         /// </summary>
+        [DataMember]
         public string Title { get; set; }
 
         /// <summary>
         /// Код.
         /// </summary>
+        [DataMember]
         public string Code { get; set; }
 
         /// <summary>
         /// Библиотеки.
         /// </summary>
+        [DataMember]
         public string Using { get; set; }
 
         /// <summary>
         /// Шаблон записи.
         /// </summary>
+        [DataMember]
         public string Template { get; set; }
 
         /// <summary>
         /// Определение.
         /// </summary>
+        [DataMember]
         public IEnumerable<ListDefinition> Definition { get; set; }
 
         /// <summary>
         /// Свойства.
         /// </summary>
+        [DataMember]
         public IEnumerable<ListDefinition> Propertie { get; set; }
 
         /// <summary>
         /// Вернуть.
         /// </summary>
+        [DataMember]
         public IEnumerable<ListDefinition> Return { get; set; }
 
         /// <summary>

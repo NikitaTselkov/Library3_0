@@ -5,9 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    
-    <Grid>
-        <TextBox FontSize="26" AcceptsReturn="True" AcceptsTab="True" />
+        Title="Library" Height="600" Width="460" ResizeMode="NoResize"
+        DataContext="{Binding MainUser, Source={StaticResource Locator}}">
+
+    <Grid Background="{StaticResource Gray}">
+
+        <StackPanel Margin="20 100">
+            
+            <TextBox Text="{Binding Name}" Style="{StaticResource InputUserData}" Tag="Name"  />
+
+            <TextBox Text="{Binding Pasword}" Style="{StaticResource InputUserData}" Tag="Pasword" />
+
+            <DockPanel Margin="0 100 0 0">
+
+                <Button  Content="Connect" Style="{StaticResource ConnectButton}" Command="{Binding Connect}" HorizontalAlignment="Left" />
+
+                <Button  Content="Register" Style="{StaticResource ConnectButton}" Command="{Binding GoToRegister}" HorizontalAlignment="Right" />
+
+            </DockPanel>
+
+        </StackPanel>
+        
+        <Frame x:Name="MainFrame" />
+
     </Grid>
 </Window>
