@@ -9,7 +9,7 @@ namespace Model.Controllers
     /// <summary>
     /// Контроллер пользователя.
     /// </summary>
-    public class UserController : AbstractController
+    public class UserController : ControllerBase
     {
         /// <summary>
         /// Пользователи.

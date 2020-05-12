@@ -20,7 +20,48 @@ namespace ViewModel
         /// <summary>
         /// Пароль.
         /// </summary>
-        public string Pasword { get; set; }
+        private string pasword;
+        public string Pasword
+        {
+            get
+            {
+                if (Pasword1 != null && Pasword2 != null)
+                {
+                    if (Pasword1 == Pasword2)
+                    {
+                        return pasword = Pasword1;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                return pasword;
+            }
+            set
+            {
+                if (Pasword1 == Pasword2 && Pasword1 != null && Pasword2 != null)
+                {
+                    pasword = Pasword1;
+                }
+                else
+                {
+                    pasword = value;
+                }
+
+                OnPropertyChanged("Pasword");
+            }
+        }
+
+        /// <summary>
+        /// Пароль 1.
+        /// </summary>
+        public string Pasword1 { get; set; }
+
+        /// <summary>
+        /// Подтверждение пароля.
+        /// </summary>
+        public string Pasword2 { get; set; }
 
         /// <summary>
         /// Фамилия.
@@ -74,6 +115,10 @@ namespace ViewModel
             {
                 User = new UserController(Name, Pasword);
             }
+            else
+            { 
+            //TODO: Такого пользователя нет.
+            }
         }
 
         /// <summary>
@@ -82,14 +127,22 @@ namespace ViewModel
         /// <param name="param"> Параметр. </param>
         public void RegisterMethod(object param)
         {
-            User = new UserController(Name, Pasword);
-            if (User.IsNewUser)
+            if (Pasword != null)
             {
-                User.SetNewUserData(LastName, Age, Gender, Access);
+                User = new UserController(Name, Pasword);
+                if (User.IsNewUser)
+                {
+                    User.SetNewUserData(LastName, Age, Gender, Access);
+                    Console.WriteLine(User.IsNewUser);
+                }
+                else
+                {
+                    //TODO: отправлять сообщение об ошибке Такой пользователь есть. 
+                }
             }
             else
             {
-            //TODO: отправлять сообщение об ошибке            
+                //TODO: отправлять сообщение об ошибке не правельный пароль.            
             }
         }
 

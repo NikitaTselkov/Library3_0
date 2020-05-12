@@ -23,7 +23,6 @@
                         <Grid>
 
                             <ContentPresenter
-                                x:Name="Content1"
                                 Content="{TemplateBinding Text}"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
@@ -47,10 +46,10 @@
                                 HorizontalAlignment="Center"
                                 Visibility="Collapsed"
                                 IsHitTestVisible="False" 
-                             />
+                            />
 
                         </Grid>
-                        
+
                     </Border>
 
                     <ControlTemplate.Triggers>

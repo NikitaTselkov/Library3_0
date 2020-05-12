@@ -12,7 +12,7 @@
     <Grid Background="{StaticResource Gray}">
 
         <StackPanel Margin="0 8">
-            
+
             <TextBox Text="{Binding Name}" Tag="Name" Style="{StaticResource InputUserData}" />
             <TextBox Text="{Binding LastName}" Tag="Surname" Style="{StaticResource InputUserData}" />
             <TextBox Text="{Binding Age, StringFormat=S}" Tag="Age" Style="{StaticResource InputUserData}" />
@@ -20,8 +20,8 @@
                 <RadioButton Content="Male" Command="{Binding SelectGender}" CommandParameter="0" Style="{StaticResource SelectGenderButton}" HorizontalAlignment="Left" />
                 <RadioButton Content="Female" Command="{Binding SelectGender}" CommandParameter="1" Style="{StaticResource SelectGenderButton}" HorizontalAlignment="Right" />
             </DockPanel>
-            <TextBox Text="{Binding Pasword}" Tag="Pasword" Style="{StaticResource InputUserData}" />
-            <TextBox Text="{Binding Pasword}" Tag="Pasword" Style="{StaticResource InputUserData}" />
+            <TextBox Text="{Binding Pasword1}" Tag="Pasword" Style="{StaticResource InputUserData}" />
+            <TextBox Text="{Binding Pasword2}" Tag="Pasword" Style="{StaticResource InputUserData}" />
 
             <Button Content="Connect" Command="{Binding Register}" Style="{StaticResource ConnectButton}" Width="400" Height="40" Margin="0 8" FontSize="35" />
 

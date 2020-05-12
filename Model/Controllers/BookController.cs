@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Model.Controllers
 {
-    public class BookController : AbstractController
+    public class BookController : ControllerBase
     {
 
         /// <summary>
