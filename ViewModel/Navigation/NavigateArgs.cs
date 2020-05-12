@@ -1,4 +1,4 @@
-﻿namespace Model.Navigation
+﻿namespace ViewModel.Navigation
 {
     public class NavigateArgs
     {

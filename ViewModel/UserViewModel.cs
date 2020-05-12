@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using Model.UserFolder;
 using Model.Controllers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Model.Navigation;
+using ViewModel.Navigation;
 using GalaSoft.MvvmLight.Command;
+using Model.Interfaces;
+using Microsoft.Windows.Shell;
 
 namespace ViewModel
 {
@@ -111,13 +112,18 @@ namespace ViewModel
         /// <param name="param"> Параметр. </param>
         public void ConnectMethod(object param)
         {
-            if (User.IsNewUser == false)
+            User = new UserController(Name, Pasword);
+
+            if (User.IsNewUser)
             {
-                User = new UserController(Name, Pasword);
+                NavigateWindow(Windows.Exception, "Ops");
+                //TODO: Отправлять сообщение об ошибке такого пользователя нет.
             }
             else
-            { 
-            //TODO: Такого пользователя нет.
+            {
+                NavigateWindow(Windows.Library);
+                //TODO: Реализовать вход в систему.
+                
             }
         }
 

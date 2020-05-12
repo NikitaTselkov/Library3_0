@@ -10,9 +10,8 @@
 
     <Grid Background="{StaticResource Gray}">
 
-        
         <StackPanel Margin="20 100 20 0">
-            
+
             <TextBox Text="{Binding Name}" Style="{StaticResource InputUserData}" Tag="Name"  />
 
             <TextBox Text="{Binding Pasword}" Style="{StaticResource InputUserData}" Tag="Pasword" />
@@ -26,9 +25,7 @@
             </DockPanel>
 
         </StackPanel>
-
         
-
         <Frame x:Name="MainFrame" />
 
     </Grid>

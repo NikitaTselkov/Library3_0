@@ -1,8 +1,10 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using Model.Navigation;
+using ViewModel.Navigation;
 using System;
 using System.Windows;
-
+using ViewModel;
+using Microsoft.Windows.Shell;
+using Xceed.Wpf.Toolkit;
 
 namespace View
 {
@@ -16,6 +18,8 @@ namespace View
             InitializeComponent();
 
             NavigationSetup();
+
+            NavigationWindowSetup();
         }
 
         void NavigationSetup()
@@ -25,5 +29,32 @@ namespace View
                 MainFrame.Navigate(new Uri(x.Url, UriKind.Relative));
             });
         }
+
+        void NavigationWindowSetup()
+        {
+            Messenger.Default.Register<NavigateWindowArgs>(this, (x) =>
+            {
+
+                switch (x.Data)
+                {
+                    case Windows.Library:
+
+                        Window mainLibraryWindow = new MainLibraryWindow();
+                        mainLibraryWindow.Show();
+                        this.Close();
+                        break;
+
+                    case Windows.Exception:
+
+                        Window exceptoinWindow = new ExceptionWindow
+                        {
+                            Content = x.Content
+                        };
+                        exceptoinWindow.ShowDialog();
+                        break;
+                }
+            });
+        }
+
     }
 }
