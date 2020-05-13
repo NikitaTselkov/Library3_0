@@ -116,14 +116,11 @@ namespace ViewModel
 
             if (User.IsNewUser)
             {
-                NavigateWindow(Windows.Exception, "Ops");
-                //TODO: Отправлять сообщение об ошибке такого пользователя нет.
+                NavigateWindow(Windows.Exception, "Такого пользователя не существует!");
             }
             else
             {
-                NavigateWindow(Windows.Library);
-                //TODO: Реализовать вход в систему.
-                
+                NavigateWindow(Windows.Library);                
             }
         }
 
@@ -139,16 +136,16 @@ namespace ViewModel
                 if (User.IsNewUser)
                 {
                     User.SetNewUserData(LastName, Age, Gender, Access);
-                    Console.WriteLine(User.IsNewUser);
+                    NavigateWindow(Windows.Library);
                 }
                 else
                 {
-                    //TODO: отправлять сообщение об ошибке Такой пользователь есть. 
+                    NavigateWindow(Windows.Exception, "Такой пользователь существует!");
                 }
             }
             else
             {
-                //TODO: отправлять сообщение об ошибке не правельный пароль.            
+                NavigateWindow(Windows.Exception, "Не верный пароль!");          
             }
         }
 
@@ -190,7 +187,9 @@ namespace ViewModel
         /// <summary>
         /// Реализация интерфейса INotifyPropertyChanged.
         /// </summary>
+#pragma warning disable CS0108 // Член скрывает унаследованный член: отсутствует новое ключевое слово
         public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning restore CS0108 // Член скрывает унаследованный член: отсутствует новое ключевое слово
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             if (PropertyChanged != null)

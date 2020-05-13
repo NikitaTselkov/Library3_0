@@ -48,7 +48,7 @@ namespace View
 
                         Window exceptoinWindow = new ExceptionWindow
                         {
-                            Content = x.Content
+                            Tag = x.Content
                         };
                         exceptoinWindow.ShowDialog();
                         break;

@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="ExceptionWindow" Height="450" Width="800">
-    <Grid>
+        Title="ExceptionWindow"
+        Height="250"
+        Width="400"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow" >
+
+    <Window.Resources>
         
-    </Grid>
+        <BitmapImage x:Key="ExceptionImage" UriSource="Icons/Exception.png" />
+        
+    </Window.Resources>
+    
+    <StackPanel Background="{StaticResource Gray}">
+
+
+         <Image Source="{StaticResource ExceptionImage}" Width="110" Height="110" />
+
+        <Viewbox Margin="10 0">
+
+            <TextBlock
+                x:Name="Exception_Text"
+                FontSize="34"
+                Text="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=Tag}"
+                Foreground="{StaticResource White}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+            />
+
+        </Viewbox>
+
+    </StackPanel>
+
+
+
 </Window>

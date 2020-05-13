@@ -8,7 +8,7 @@
              StartupUri="MainWindow.xaml">
 
     <Application.Resources>
-        <ResourceDictionary>
+        <ResourceDictionary >
 
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:ViewModel.Navigation;assembly=ViewModel" />
 
