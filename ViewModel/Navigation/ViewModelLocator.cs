@@ -12,6 +12,8 @@ namespace ViewModel.Navigation
 
             SimpleIoc.Default.Register<UserViewModel>();
 
+            SimpleIoc.Default.Register<BookViewModel>();
+
         }
 
         public UserViewModel MainUser
@@ -19,6 +21,14 @@ namespace ViewModel.Navigation
             get
             {
                 return ServiceLocator.Current.GetInstance<UserViewModel>();
+            }
+        }
+
+        public BookViewModel MainBook
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<BookViewModel>();
             }
         }
 

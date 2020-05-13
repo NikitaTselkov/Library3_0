@@ -18,6 +18,8 @@
 
                 <ResourceDictionary Source="Styles/MainWindowStyles.xaml" />
 
+                <ResourceDictionary Source="Styles/MainLibraryStyles.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

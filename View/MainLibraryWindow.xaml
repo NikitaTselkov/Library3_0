@@ -5,9 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="MainLibraryWindow" Height="450" Width="800">
+        Title="MainLibraryWindow"
+        MinHeight="600"
+        MinWidth="1000"
+        DataContext="{Binding MainBook, Source={StaticResource Locator}}">
     
     <Grid Background="{StaticResource Gray}">
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130*"/>
+            <ColumnDefinition Width="623*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="{StaticResource DarkGray}">
+
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" >
+
+                <ItemsControl ItemsSource="{Binding Book.Books}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+
+                            <RadioButton Content="{Binding Title}" Style="{StaticResource TitleButton}" GroupName="TitleButtons" />
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </ScrollViewer>
+        </Grid>
+
     </Grid>
 </Window>

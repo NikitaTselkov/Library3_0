@@ -84,6 +84,20 @@ namespace ViewModel
         /// </summary>
         public Access Access { get; set; }
 
+        /// <summary>
+        /// Создание экзeмпляра пользователя.
+        /// </summary>
+        private UserController user = new UserController();
+        public UserController User
+        {
+            get { return user; }
+            set
+            {
+                user = value;
+                OnPropertyChanged("User");
+            }
+        }
+
         #region RelayCommand
 
         public RelayCommand Connect { get; set; }
@@ -168,20 +182,6 @@ namespace ViewModel
         }
 
         #endregion
-
-        /// <summary>
-        /// Создание экзeмпляра пользователя.
-        /// </summary>
-        private UserController user = new UserController();
-        public UserController User
-        {
-            get { return user; }
-            set 
-            {
-                user = value;
-                OnPropertyChanged("User");
-            }
-        }
 
 
         /// <summary>

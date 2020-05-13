@@ -11,7 +11,6 @@ namespace ViewModel.Navigation
 
         }
 
-        public string Title { get; set; }
         public void Navigate(string url)
         {
             Messenger.Default.Send<NavigateArgs>(new NavigateArgs(url));

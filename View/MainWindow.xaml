@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="Library" Height="600" Width="460" ResizeMode="NoResize"
+        Title="Library"
+        Height="600"
+        Width="460"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         DataContext="{Binding MainUser, Source={StaticResource Locator}}">
 
     <Grid Background="{StaticResource Gray}">

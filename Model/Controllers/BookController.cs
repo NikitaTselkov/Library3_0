@@ -109,9 +109,12 @@ namespace Model.Controllers
 
 
         /// <summary>
-        /// Пустой конструктор.
+        /// Конструктор получающий коллекцию книг.
         /// </summary>
-        public BookController() { }
+        public BookController()
+        {
+            Books = GetListItemData<Book>(BOOK_PATH);
+        }
 
     }
 }
