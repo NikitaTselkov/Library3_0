@@ -31,6 +31,7 @@ namespace ViewModel
             }
 
             Book = new BookController(param.ToString());
+
             Book.CurrentBook.IsChecked = true;
 
         }

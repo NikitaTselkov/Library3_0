@@ -40,12 +40,10 @@
                         <ControlTemplate>
 
                             <Grid>
-
                                 <Ellipse
                                     Stroke="{StaticResource White}"
                                     StrokeThickness="2"
                                 />
-
                             </Grid>
 
                         </ControlTemplate>
@@ -95,19 +93,27 @@
                 <RowDefinition Height="15*"/>
             </Grid.RowDefinitions>
 
+            
+            
             <Border
                 Background="{StaticResource LightGray}"
                 Grid.Column="1"
                 Grid.Row="4"
                 CornerRadius="10" >
 
-                <StackPanel Margin="20">
+                <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto">
+                    <Viewbox VerticalAlignment="Top" Margin="20">
 
-                    <TextBlock Text="{Binding Book.CurrentBook.Using}" Style="{StaticResource OutputCode}" />
-                    <TextBlock Text="{Binding Book.CurrentBook.Template}" Style="{StaticResource OutputCode}" />
-                    <TextBlock Text="{Binding Book.CurrentBook.Code}" Style="{StaticResource OutputCode}" />
+                        <StackPanel>
 
-                </StackPanel>
+                            <TextBlock Text="{Binding Book.CurrentBook.Using}" Style="{StaticResource OutputCode}" />
+                            <TextBlock Text="{Binding Book.CurrentBook.Template}" Style="{StaticResource OutputCode}" />
+                            <TextBlock Text="{Binding Book.CurrentBook.Code}" Style="{StaticResource OutputCode}" />
+
+                        </StackPanel>
+
+                    </Viewbox>
+                </ScrollViewer>
 
             </Border>
 
@@ -117,23 +123,25 @@
                 Grid.Row="4"
                 CornerRadius="10">
 
-                <Grid>
+                <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" >
 
-                    <ItemsControl ItemsSource="{Binding Book.CurrentBook.Return}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
+                    <Viewbox VerticalAlignment="Top">
+                        <ItemsControl ItemsSource="{Binding Book.CurrentBook.Return}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
 
-                                <StackPanel Margin="20 10">
-                                    <TextBlock Text="{Binding Title}" Style="{StaticResource OutputCode}" Foreground="White" />
-                                    <TextBlock Text="{Binding Definition}" Style="{StaticResource OutputCode}"  />
-                                </StackPanel>
+                                    <StackPanel Margin="20 10">
+                                        <TextBlock Text="{Binding Title}" Style="{StaticResource OutputCode}" Foreground="White" />
+                                        <TextBlock Text="{Binding Definition}" Style="{StaticResource OutputCode}"  />
+                                    </StackPanel>
 
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Viewbox>
 
-                </Grid>
-                
+                </ScrollViewer>
+
             </Border>
 
             <Border
@@ -143,12 +151,17 @@
                 Grid.RowSpan="3"
                 CornerRadius="10">
 
-                <StackPanel>
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
 
                     <Viewbox
-                    MinWidth="100"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left">
+                        MinWidth="100"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left">
 
                         <Label
                             Margin="10 0 70 0"
@@ -160,24 +173,31 @@
 
                     </Viewbox>
 
-                    <Grid>
+                    <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto" Grid.Row="1">
 
                         <ItemsControl ItemsSource="{Binding Book.CurrentBook.Propertie}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
 
-                                    <DockPanel Margin="20 10">
-                                        <TextBlock Text="{Binding Title}" Style="{StaticResource OutputCode}" Foreground="White" />
-                                        <TextBlock Text="{Binding Definition}" Style="{StaticResource OutputCode}" />
-                                    </DockPanel>
+                                    <TextBlock
+                                        Margin="20 10"
+                                        Foreground="{StaticResource White}"
+                                        FontSize="30"
+                                        TextWrapping="Wrap">
+                                        
+                                        <Run Text="{Binding Title}" Foreground="White" />
+                                        <Run Text=" - " />
+                                        <Run Text="{Binding Definition}" />
+                                        
+                                    </TextBlock>
 
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                    </Grid>
+                    </ScrollViewer>
 
-                </StackPanel>
+                </Grid>
 
             </Border>
 
@@ -188,18 +208,21 @@
                 Grid.ColumnSpan="3"
                 CornerRadius="10">
 
-                <ItemsControl ItemsSource="{Binding Book.CurrentBook.Definition}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="5">
+                    <ItemsControl ItemsSource="{Binding Book.CurrentBook.Definition}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
 
-                            <DockPanel Margin="20 10">
-                                <TextBlock Text="{Binding Title}" Style="{StaticResource OutputCode}" Foreground="White" />
-                                <TextBlock Text="{Binding Definition}" Style="{StaticResource OutputCode}" />
-                            </DockPanel>
+                                <TextBlock Margin="20 10" FontSize="30" TextWrapping="Wrap">
+                                    <Run Text="{Binding Title}" Foreground="White" />
+                                    <Run Text=" - " Foreground="{StaticResource White}" />
+                                    <Run Text="{Binding Definition}" Foreground="{StaticResource White}" />
+                                </TextBlock>
 
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
 
             </Border>
 
