@@ -34,6 +34,11 @@ namespace Model
         public string Template { get; set; }
 
         /// <summary>
+        /// Является ли активной.
+        /// </summary>
+        public bool IsChecked { get; set; } = false;
+
+        /// <summary>
         /// Определение.
         /// </summary>
         [DataMember]

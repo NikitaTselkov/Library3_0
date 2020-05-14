@@ -19,6 +19,9 @@
 
     <Color x:Key="mediumGray">#383838</Color>
     <SolidColorBrush  x:Key="MediumGray" Color="{StaticResource mediumGray}" />
+
+    <Color x:Key="lightRed">#AA8C8D</Color>
+    <SolidColorBrush  x:Key="LightRed" Color="{StaticResource lightRed}" />
     
 
 </ResourceDictionary>

@@ -10,7 +10,7 @@ using Microsoft.Windows.Shell;
 
 namespace ViewModel
 {
-    public class UserViewModel : NavigateViewModel , INotifyPropertyChanged
+    public class UserViewModel : NavigateViewModel
     {
 
         /// <summary>
@@ -183,18 +183,6 @@ namespace ViewModel
 
         #endregion
 
-
-        /// <summary>
-        /// Реализация интерфейса INotifyPropertyChanged.
-        /// </summary>
-#pragma warning disable CS0108 // Член скрывает унаследованный член: отсутствует новое ключевое слово
-        public event PropertyChangedEventHandler PropertyChanged;
-#pragma warning restore CS0108 // Член скрывает унаследованный член: отсутствует новое ключевое слово
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
 
     }
 }

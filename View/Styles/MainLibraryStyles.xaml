@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:View.Styles">
 
     <BitmapImage x:Key="Logo" UriSource="/Icons/CSharpLogo.png" />
-    
+
     <Style x:Key="TitleButton" TargetType="RadioButton">
         <Setter Property="Background" Value="{StaticResource DarkGray}" />
         <Setter Property="Foreground" Value="{StaticResource MediumGray}" />
@@ -42,7 +42,7 @@
 
                                 <Image x:Name="logo" Source="{StaticResource Logo}" Width="65" Height="65" Margin="15 0" />
 
-                                <Viewbox Margin="20 0" HorizontalAlignment="Left">
+                                <Viewbox Margin="20 10 5 10" HorizontalAlignment="Left">
 
                                     <ContentPresenter
                                         HorizontalAlignment="Center"
@@ -63,42 +63,35 @@
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="logo" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="content" Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="Foreground" Value="{StaticResource LightRed}" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        
+
                                         <DoubleAnimation
                                             Storyboard.TargetName="rect"
                                             Storyboard.TargetProperty="Width"
                                             From="0"
                                             To="350"
                                             Duration="0:0:0.2" />
-                                        
+
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="rect"
-                                            Storyboard.TargetProperty="Width"
-                                            From="350"
-                                            To="0"
-                                            Duration="0:0:0.1" />
-
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
                         </Trigger>
-                        
 
                     </ControlTemplate.Triggers>
 
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="OutputCode" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="Foreground" Value="{StaticResource White}" />
+        <Setter Property="Margin" Value="0 5 0 10" />
+        <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
 </ResourceDictionary>
