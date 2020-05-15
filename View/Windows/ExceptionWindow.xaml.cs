@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace View
+namespace View.Windows
 {
     /// <summary>
     /// Логика взаимодействия для ExceptionWindow.xaml

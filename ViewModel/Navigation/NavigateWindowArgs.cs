@@ -7,18 +7,18 @@
 
         }
 
-        public NavigateWindowArgs(Windows windows)
+        public NavigateWindowArgs(WindowsEnum windows)
         {
             Data = windows;
         }
 
-        public NavigateWindowArgs(Windows windows, string content)
+        public NavigateWindowArgs(WindowsEnum windows, string content)
         {
             Data = windows;
             Content = content;
         }
 
-        public Windows Data { get; set; }
+        public WindowsEnum Data { get; set; }
 
         public string Content { get; set; }
 

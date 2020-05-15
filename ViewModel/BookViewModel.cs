@@ -1,22 +1,28 @@
-﻿using Model.BookFolder;
-using Model.Controllers;
+﻿using Model.Controllers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
+using ViewModel.Navigation;
 
 namespace ViewModel
 {
-    public class BookViewModel : Navigation.NavigateViewModel
+    public class BookViewModel : NavigateViewModel
     {
 
         public RelayCommand SelectListCommand { get; set; } 
+        public RelayCommand SelectUserCommand { get; set; } 
 
         public BookViewModel()
         {
             SelectListCommand = new RelayCommand(SelectListMethod);
+            SelectUserCommand = new RelayCommand(GoToSelectUserMethod);
+        }
+
+        /// <summary>
+        /// Метод отправляющий в окно выбора пользователя.
+        /// </summary>
+        /// <param name="param"></param>
+        public void GoToSelectUserMethod(object param)
+        {
+            NavigateWindow(WindowsEnum.SelectUser);
         }
 
         /// <summary>

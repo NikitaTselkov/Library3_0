@@ -1,4 +1,4 @@
-﻿<Window x:Class="View.MainLibraryWindow"
+﻿<Window x:Class="View.Windows.MainLibraryWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -33,8 +33,8 @@
                 <Button
                     Height="60"
                     Width="60"
-                    Background="Transparent"
                     HorizontalAlignment="Left"
+                    Command="{Binding SelectUserCommand}"
                     Margin="30 0">
                     <Button.Template>
                         <ControlTemplate>
@@ -42,6 +42,7 @@
                             <Grid>
                                 <Ellipse
                                     Stroke="{StaticResource White}"
+                                    Fill="{StaticResource DarkGray}"
                                     StrokeThickness="2"
                                 />
                             </Grid>

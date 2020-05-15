@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xceed.Wpf.AvalonDock.Controls;
 
 namespace Model.Controllers
 {

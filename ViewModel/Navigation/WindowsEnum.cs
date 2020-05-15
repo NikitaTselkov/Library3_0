@@ -4,9 +4,10 @@ using System.Text;
 
 namespace ViewModel.Navigation
 {
-    public enum Windows
+    public enum WindowsEnum
     {
         Library,
-        Exception
+        Exception,
+        SelectUser
     }
 }

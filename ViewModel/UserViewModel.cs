@@ -144,7 +144,7 @@ namespace ViewModel
             catch (ArgumentNullException ex)
             {
                 isException = true;
-                NavigateWindow(Windows.Exception, ex.ParamName);
+                NavigateWindow(WindowsEnum.Exception, ex.ParamName);
             }
 
             #endregion
@@ -155,11 +155,11 @@ namespace ViewModel
 
                 if (User.IsNewUser)
                 {
-                    NavigateWindow(Windows.Exception, "Такого пользователя не существует!");
+                    NavigateWindow(WindowsEnum.Exception, "Такого пользователя не существует!");
                 }
                 else
                 {
-                    NavigateWindow(Windows.Library);
+                    NavigateWindow(WindowsEnum.Library);
                 }
             }
         }
@@ -196,7 +196,7 @@ namespace ViewModel
             catch (ArgumentNullException ex)
             {
                 isException = true;
-                NavigateWindow(Windows.Exception, ex.ParamName);
+                NavigateWindow(WindowsEnum.Exception, ex.ParamName);
             }
 
             #endregion
@@ -207,11 +207,11 @@ namespace ViewModel
                 if (User.IsNewUser)
                 {
                     User.SetNewUserData(LastName, Age, Gender, Access);
-                    NavigateWindow(Windows.Library);
+                    NavigateWindow(WindowsEnum.Library);
                 }
                 else
                 {
-                    NavigateWindow(Windows.Exception, "Такой пользователь существует!");
+                    NavigateWindow(WindowsEnum.Exception, "Такой пользователь существует!");
                 }
                 
             }

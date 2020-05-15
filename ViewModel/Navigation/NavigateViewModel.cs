@@ -17,12 +17,12 @@ namespace ViewModel.Navigation
             Messenger.Default.Send<NavigateArgs>(new NavigateArgs(url));
         }
 
-        public void NavigateWindow(Windows Title)
+        public void NavigateWindow(WindowsEnum Title)
         {
             Messenger.Default.Send<NavigateWindowArgs>(new NavigateWindowArgs(Title));
         }
 
-        public void NavigateWindow(Windows Title, string content)
+        public void NavigateWindow(WindowsEnum Title, string content)
         {
             Messenger.Default.Send<NavigateWindowArgs>(new NavigateWindowArgs(Title, content));
         }
