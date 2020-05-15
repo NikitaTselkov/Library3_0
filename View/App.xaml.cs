@@ -22,7 +22,7 @@ namespace View
             Messenger.Default.Register<NavigateWindowArgs>(this, (x) =>
             {
 
-                switch (x.Data)
+                switch (x.Windows)
                 {
                     case WindowsEnum.Library:
 

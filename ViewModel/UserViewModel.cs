@@ -50,7 +50,7 @@ namespace ViewModel
                     pasword = value;
                 }
 
-                OnPropertyChanged("Pasword");
+                RaisePropertyChanged("Pasword");
             }
         }
 
@@ -94,7 +94,7 @@ namespace ViewModel
             set
             {
                 user = value;
-                OnPropertyChanged("User");
+                RaisePropertyChanged("User");
             }
         }
 

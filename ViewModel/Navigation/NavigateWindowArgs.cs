@@ -1,6 +1,8 @@
-﻿namespace ViewModel.Navigation
+﻿using System;
+
+namespace ViewModel.Navigation
 {
-    public class NavigateWindowArgs
+    public class NavigateWindowArgs : EventArgs
     {
         public NavigateWindowArgs()
         {
@@ -9,18 +11,23 @@
 
         public NavigateWindowArgs(WindowsEnum windows)
         {
-            Data = windows;
+            Windows = windows;
         }
 
         public NavigateWindowArgs(WindowsEnum windows, string content)
         {
-            Data = windows;
+            Windows = windows;
             Content = content;
         }
 
-        public WindowsEnum Data { get; set; }
+        public WindowsEnum Windows { get; }
 
-        public string Content { get; set; }
+        public string Content { get; }
 
+
+        public override string ToString()
+        {
+            return $"Window: {Windows}, Content: {Content}.";
+        }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace ViewModel.Navigation
+﻿using System;
+
+namespace ViewModel.Navigation
 {
-    public class NavigateArgs
+    public class NavigateArgs : EventArgs
     {
         public NavigateArgs()
         {
@@ -12,8 +14,12 @@
             Url = url;
         }
 
-        public string Url { get; set; }
+        public string Url { get; }
 
 
+        public override string ToString()
+        {
+            return $"Url: {Url}.";
+        }
     }
 }

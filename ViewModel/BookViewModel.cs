@@ -10,6 +10,9 @@ namespace ViewModel
         public RelayCommand SelectListCommand { get; set; } 
         public RelayCommand SelectUserCommand { get; set; } 
 
+        /// <summary>
+        /// Главный конструктор.
+        /// </summary>
         public BookViewModel()
         {
             SelectListCommand = new RelayCommand(SelectListMethod);
@@ -53,7 +56,7 @@ namespace ViewModel
             set
             {
                 book = value;
-                OnPropertyChanged("Book");
+                RaisePropertyChanged("Book");
             }
         }
 
