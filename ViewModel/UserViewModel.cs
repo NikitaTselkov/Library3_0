@@ -126,15 +126,41 @@ namespace ViewModel
         /// <param name="param"> Параметр. </param>
         public void ConnectMethod(object param)
         {
-            User = new UserController(Name, Pasword);
+            #region Проверка Аргументов
 
-            if (User.IsNewUser)
+            var isException = false;
+
+            try
             {
-                NavigateWindow(Windows.Exception, "Такого пользователя не существует!");
+                if (string.IsNullOrWhiteSpace(Name))
+                {
+                    throw new ArgumentNullException("Имя не может быть пустым!", nameof(Name));
+                }
+                if (string.IsNullOrWhiteSpace(Pasword))
+                {
+                    throw new ArgumentNullException("Пароль не может быть пустым!", nameof(Pasword));
+                }
             }
-            else
+            catch (ArgumentNullException ex)
             {
-                NavigateWindow(Windows.Library);                
+                isException = true;
+                NavigateWindow(Windows.Exception, ex.ParamName);
+            }
+
+            #endregion
+
+            if (isException == false)
+            {
+                User = new UserController(Name, Pasword);
+
+                if (User.IsNewUser)
+                {
+                    NavigateWindow(Windows.Exception, "Такого пользователя не существует!");
+                }
+                else
+                {
+                    NavigateWindow(Windows.Library);
+                }
             }
         }
 
@@ -144,7 +170,38 @@ namespace ViewModel
         /// <param name="param"> Параметр. </param>
         public void RegisterMethod(object param)
         {
-            if (Pasword != null)
+            #region Проверка Аргументов
+
+            var isException = false;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Name))
+                {
+                    throw new ArgumentNullException("Поле имя не может быть пустым!", nameof(Name));
+                }               
+                if (string.IsNullOrWhiteSpace(LastName))
+                {
+                    throw new ArgumentNullException("Поле фамилия не может быть пустым!", nameof(LastName));
+                }
+                if (Age <= 0 || Age > 150)
+                {
+                    throw new ArgumentNullException("Укажите корректный возраст!", nameof(Age));
+                }
+                if (string.IsNullOrWhiteSpace(Pasword))
+                {
+                    throw new ArgumentNullException("Не корректный пароль!", nameof(Pasword));
+                }
+
+            }
+            catch (ArgumentNullException ex)
+            {
+                isException = true;
+                NavigateWindow(Windows.Exception, ex.ParamName);
+            }
+
+            #endregion
+
+            if (isException == false)
             {
                 User = new UserController(Name, Pasword);
                 if (User.IsNewUser)
@@ -156,10 +213,7 @@ namespace ViewModel
                 {
                     NavigateWindow(Windows.Exception, "Такой пользователь существует!");
                 }
-            }
-            else
-            {
-                NavigateWindow(Windows.Exception, "Не верный пароль!");          
+                
             }
         }
 

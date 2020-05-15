@@ -15,7 +15,7 @@
 
     <Window.Resources>
         
-        <BitmapImage x:Key="ExceptionImage" UriSource="Icons/Exception.png" />
+        <BitmapImage x:Key="ExceptionImage" UriSource="/Icons/Exception.png" />
         
     </Window.Resources>
     
