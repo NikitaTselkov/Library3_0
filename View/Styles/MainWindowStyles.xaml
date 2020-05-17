@@ -2,56 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:View.Styles">
 
-    <Style x:Key="InputUserData2" TargetType="TextBox">
-        <Setter Property="FontSize" Value="30" />
-        <Setter Property="Width" Value="380" />
-        <Setter Property="Margin" Value="4" />
-        <Setter Property="Background" Value="{x:Null}" />
-        <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="TextAlignment" Value="Center" />
-        <Setter Property="MaxHeight" Value="200" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="TextBox">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            MaxHeight="{TemplateBinding MaxHeight}">
-
-
-                        <Grid Margin="5">
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
-
-                            <TextBlock 
-                                Text="{TemplateBinding Tag}"
-                                x:Name="hint"
-                                VerticalAlignment="Center"
-                                Background="Transparent"
-                                FontSize="{TemplateBinding FontSize}"
-                                IsHitTestVisible="False"
-                                TextAlignment="{TemplateBinding TextAlignment}"
-                                Visibility="Collapsed"
-                                TextWrapping="{TemplateBinding TextWrapping}"
-                                HorizontalAlignment="Center"
-                            />
-                        </Grid>
-                    </Border>
-
-                    <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Text" Value="" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="hint" Property="Visibility" Value="Visible" />
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <Style TargetType="TextBox" x:Key="InputUserData">
         <Setter Property="Background" Value="{StaticResource DarkGray}" />

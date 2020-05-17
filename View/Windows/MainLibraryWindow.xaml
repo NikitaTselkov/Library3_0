@@ -8,7 +8,8 @@
         Title="MainLibraryWindow"
         MinHeight="600"
         MinWidth="1000"
-        DataContext="{Binding MainBook, Source={StaticResource Locator}}">
+        WindowState="Maximized"
+        DataContext="{Binding MainBook, Source={StaticResource Locator}}" >
 
     <Grid Background="{StaticResource Gray}">
         <Grid.ColumnDefinitions>
@@ -93,9 +94,7 @@
                 <RowDefinition Height="296*"/>
                 <RowDefinition Height="15*"/>
             </Grid.RowDefinitions>
-
-            
-            
+  
             <Border
                 Background="{StaticResource LightGray}"
                 Grid.Column="1"
@@ -236,6 +235,32 @@
                 Margin="30 10 0 0" 
                 Grid.Column="1"
             />
+
+            <Button
+                Width="50"
+                Height="50"
+                Background="Transparent"
+                Grid.Column="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="30"
+                Command="{Binding EditListCommand}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}"
+                            />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                
+                <Button.Content>
+                    <Image Source="/Icons/Editing.png" />
+                </Button.Content>
+            </Button>
 
         </Grid>
 

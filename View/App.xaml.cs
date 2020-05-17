@@ -1,7 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Win32;
+using Model;
+using Model.BookFolder;
+using System;
 using System.Collections;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using View.Windows;
 using ViewModel.Navigation;
 
@@ -14,7 +20,7 @@ namespace View
     {
         public App()
         {
-            NavigationWindowSetup();           
+            NavigationWindowSetup();       
         }
 
         void NavigationWindowSetup()
@@ -26,16 +32,17 @@ namespace View
                 {
                     case WindowsEnum.Library:
 
-                        Window mainLibraryWindow = new MainLibraryWindow();
+                        var mainLibraryWindow = new MainLibraryWindow();
+
                         mainLibraryWindow.Show();
 
                         CloseWindows(mainLibraryWindow);
-                        
+
                         break;
 
                     case WindowsEnum.Exception:
 
-                        Window exceptoinWindow = new ExceptionWindow
+                        var exceptoinWindow = new ExceptionWindow
                         {
                             Tag = x.Content
                         };
@@ -44,8 +51,14 @@ namespace View
 
                     case WindowsEnum.SelectUser:
 
-                        Window selectUserWindow = new SelectUserWindow();
+                        var selectUserWindow = new SelectUserWindow();
                         selectUserWindow.Show();
+                        break;
+
+                    case WindowsEnum.EditList:
+
+                        var editListWindow = new EditListWindow();
+                        editListWindow.ShowDialog();
                         break;
                 }
             });
@@ -65,7 +78,6 @@ namespace View
                 {
                     CurrentWindow.Close();
                 }
-
             }
         }
     }

@@ -25,18 +25,6 @@ namespace Model.BookFolder
         /// <param name="definition"> Определение. </param>
         public ListDefinition(string title, string definition)
         {
-            #region Проверка Условий
-
-            if (string.IsNullOrWhiteSpace(title))
-            {
-                throw new ArgumentNullException("title не может быть null", nameof(title));
-            }
-            if (string.IsNullOrWhiteSpace(definition))
-            {
-                throw new ArgumentNullException("definition не может быть null", nameof(definition));
-            }
-
-            #endregion
 
             Title = title;
 

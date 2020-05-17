@@ -1,12 +1,8 @@
 ﻿using System;
 using Model.UserFolder;
 using Model.Controllers;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using ViewModel.Navigation;
-using GalaSoft.MvvmLight.Command;
-using Model.Interfaces;
-using Microsoft.Windows.Shell;
+
 
 namespace ViewModel
 {
@@ -116,6 +112,7 @@ namespace ViewModel
             Register = new RelayCommand(RegisterMethod);
             GoToRegister = new RelayCommand(GoToRegisterMethod);
             SelectGender = new RelayCommand(SelectGenderMethod);
+
         }
 
         #region Методы

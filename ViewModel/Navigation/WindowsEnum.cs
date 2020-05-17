@@ -8,6 +8,7 @@ namespace ViewModel.Navigation
     {
         Library,
         Exception,
-        SelectUser
+        SelectUser,
+        EditList
     }
 }

@@ -80,19 +80,6 @@ namespace Model.Controllers
             {
                 throw new ArgumentNullException("_template не может быть null", nameof(_template));
             }
-            if (_definition == null)
-            {
-                throw new ArgumentNullException("_definition не может быть null", nameof(_definition));
-            }
-            if (_propertie == null)
-            {
-                throw new ArgumentNullException("_propertie не может быть null", nameof(_propertie));
-            }
-            if (_return == null)
-            {
-                throw new ArgumentNullException("_return не может быть null", nameof(_return));
-            }
-
 
             #endregion
 

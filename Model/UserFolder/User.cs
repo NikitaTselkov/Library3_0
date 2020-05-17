@@ -10,13 +10,13 @@ namespace Model.UserFolder
         /// Имя.
         /// </summary>
         [DataMember]
-        public string Firstname { get; private set; }
+        public string Firstname { get; set; }
 
         /// <summary>
         /// Пароль.
         /// </summary>
         [DataMember]
-        public string Password { get; private set; }
+        public string Password { get; set; }
 
         /// <summary>
         /// Фамилия.

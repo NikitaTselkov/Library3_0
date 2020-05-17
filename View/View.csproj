@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Icons\CSharpLogo.png" />
+    <None Remove="Icons\Editing.png" />
     <None Remove="Icons\Exception.png" />
   </ItemGroup>
 
@@ -17,6 +18,9 @@
 
   <ItemGroup>
     <Resource Include="Icons\CSharpLogo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\Editing.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Icons\Exception.png">

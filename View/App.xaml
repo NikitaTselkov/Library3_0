@@ -20,6 +20,8 @@
 
                 <ResourceDictionary Source="Styles/MainLibraryStyles.xaml" />
 
+                <ResourceDictionary Source="Styles/EditListStyles.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
