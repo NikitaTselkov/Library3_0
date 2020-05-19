@@ -49,25 +49,48 @@ namespace Model.Controllers
 
                 IsNewBook = SaveItems(Books, BOOK_PATH, CurrentBook);
             }
+            
+        }
 
+        /// <summary>
+        /// Метод удаления страниц.
+        /// </summary>
+        /// <param name="_title"> Заголовок. </param>
+        public void RemoveBook(string _title)
+        {
+            if (string.IsNullOrWhiteSpace(_title))
+            {
+                throw new ArgumentNullException("_title не может быть null", nameof(_title));
+            }
+
+            Books = GetListItemData<Book>(BOOK_PATH);
+
+            Books.Remove(Books.SingleOrDefault(b => b.Title == _title));
+
+            ISave.Save(BOOK_PATH, Books);
         }
 
         /// <summary>
         /// Задает книге не достающии данные.
         /// </summary>
+        /// <param name="_title"> Заголовок. </param>
         /// <param name="_code"> Код. </param>
         /// <param name="_using"> Библиотеки. </param>
         /// <param name="_template"> Шаблон записи. </param>
         /// <param name="_definition"> Определение. </param>
         /// <param name="_propertie"> Свойства. </param>
         /// <param name="_return"> Возвращаемый тип. </param>
-        public void SetNewBookData(string _code, string _using, string _template,
+        public void SetNewBookData(string _title, string _code, string _using, string _template,
             IEnumerable<ListDefinition> _definition,
             IEnumerable<ListDefinition> _propertie,
             IEnumerable<ListDefinition> _return)
         {
             #region Проверка Условий
 
+            if (string.IsNullOrWhiteSpace(_title))
+            {
+                throw new ArgumentNullException("_title не может быть null", nameof(_title));
+            }
             if (string.IsNullOrWhiteSpace(_code))
             {
                 throw new ArgumentNullException("_code не может быть null", nameof(_code));
@@ -83,6 +106,7 @@ namespace Model.Controllers
 
             #endregion
 
+            CurrentBook.Title = _title;
             CurrentBook.Code = _code;
             CurrentBook.Using = _using;
             CurrentBook.Template = _template;

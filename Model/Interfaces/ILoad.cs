@@ -14,6 +14,7 @@ namespace Model.Interfaces
             {
                 if (fs.Length > 0)
                 {
+
                     if (formatter.ReadObject(fs) is T users)
                     {
                         return users;
@@ -22,7 +23,10 @@ namespace Model.Interfaces
                     {
                         return default;
                     }
+
+
                 }
+
                 return default;
             }
 

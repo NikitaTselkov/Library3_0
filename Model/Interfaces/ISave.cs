@@ -9,7 +9,7 @@ namespace Model
         {
             var formatter = new DataContractJsonSerializer(typeof(T));
 
-            using (var fs = new FileStream(path, FileMode.OpenOrCreate))
+            using (var fs = new FileStream(path, FileMode.Create))
             {
                 formatter.WriteObject(fs, result);
             }

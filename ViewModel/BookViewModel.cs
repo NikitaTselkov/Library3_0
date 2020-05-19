@@ -3,7 +3,6 @@ using Model.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using ViewModel.Navigation;
 
 
@@ -16,6 +15,7 @@ namespace ViewModel
         public RelayCommand SelectUserCommand { get; set; } 
         public RelayCommand EditListCommand { get; set; } 
         public RelayCommand AddListCommand { get; set; } 
+        public RelayCommand RemoveListCommand { get; set; } 
 
         /// <summary>
         /// Главный конструктор.
@@ -26,6 +26,7 @@ namespace ViewModel
             SelectUserCommand = new RelayCommand(GoToSelectUserMethod);
             EditListCommand = new RelayCommand(EditListMethod);
             AddListCommand = new RelayCommand(AddListMethod);
+            RemoveListCommand = new RelayCommand(RemoveListMethod);
         }
 
         /// <summary>
@@ -52,6 +53,23 @@ namespace ViewModel
 
             Book.CurrentBook.IsChecked = true;
 
+            RaisePropertyChanged("Book");
+
+        }
+
+        /// <summary>
+        /// Метод удаления страницы.
+        /// </summary>
+        /// <param name="param"> Параметр. </param>
+        public void RemoveListMethod(object param)
+        {
+            var _title = book.CurrentBook.Title;
+
+            Book.RemoveBook(_title);
+
+            RaisePropertyChanged("Book");
+
+            Book = new BookController();
         }
 
         /// <summary>
@@ -79,32 +97,40 @@ namespace ViewModel
                 {
                     case "Definition":
 
-                        resultList = Book.CurrentBook.Definition.ToList();
+                        if (Book.CurrentBook.Definition != null)
+                            resultList = Book.CurrentBook.Definition.ToList();
+
                         resultList.Add(new ListDefinition("", ""));
                         currentBook.Definition = resultList;
 
                         break;
                     case "Return":
 
-                        resultList = Book.CurrentBook.Return.ToList();
+                        if (Book.CurrentBook.Return != null)
+                            resultList = Book.CurrentBook.Return.ToList();
+
                         resultList.Add(new ListDefinition("", ""));
                         currentBook.Return = resultList;
 
                         break;
                     case "Propertie":
 
-                        resultList = Book.CurrentBook.Propertie.ToList();
+                        if (Book.CurrentBook.Propertie != null)
+                            resultList = Book.CurrentBook.Propertie.ToList();
+
                         resultList.Add(new ListDefinition("", ""));
                         currentBook.Propertie = resultList;
 
                         break;
                     default:
+                            Book.SetNewBookData(currentBook.Title, currentBook.Code, currentBook.Using, currentBook.Template, currentBook.Definition, currentBook.Propertie, currentBook.Return);
+                            Book = new BookController(currentBook.Title);
+                            Book.CurrentBook.IsChecked = true;
+                       
                         break;
                 }
 
             }
-
-            Book.SetNewBookData(currentBook.Code, currentBook.Using, currentBook.Template, currentBook.Definition, currentBook.Propertie, currentBook.Return);
 
             RaisePropertyChanged("Book");
         }

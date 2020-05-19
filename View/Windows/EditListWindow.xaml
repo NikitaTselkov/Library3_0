@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:View.Windows"
         mc:Ignorable="d"
         Title="EditListWindow"
-        Height="700"
+        Height="750"
         Width="1100"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
@@ -26,6 +26,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="15*"/>
             <RowDefinition Height="170*"/>
             <RowDefinition Height="15*"/>
             <RowDefinition Height="537*"/>
@@ -34,10 +36,41 @@
             <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
 
+        <Border
+            Background="{StaticResource LightGray}"
+            Grid.Column="1"
+            Grid.ColumnSpan="5"
+            Grid.Row="1"
+            CornerRadius="10">
+
+            <Grid>
+
+                <TextBox
+                    Style="{StaticResource InputText}"
+                    Text="{Binding Book.CurrentBook.Title}"
+                    FontSize="40"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Foreground="White"
+                />
+
+                <Button
+                    Width="50"
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    Margin="10"
+                    Command="{Binding RemoveListCommand}"
+                />
+
+            </Grid>
+            
+        </Border>
+
         <Border 
             Background="{StaticResource Gray}"
             Grid.Column="1"
-            Grid.Row="1"
+            Grid.Row="3"
             Grid.ColumnSpan="5"
             CornerRadius="10">
 
@@ -82,7 +115,7 @@
             Background="{StaticResource Gray}"
             CornerRadius="10"
             Grid.Column="1"
-            Grid.Row="3">
+            Grid.Row="5">
 
             <Border
                 Background="{StaticResource LightGray}"
@@ -111,7 +144,7 @@
             Background="{StaticResource Gray}"
             CornerRadius="10"
             Grid.Column="3"
-            Grid.Row="3">
+            Grid.Row="5">
 
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
 
@@ -153,7 +186,7 @@
             Background="{StaticResource Gray}"
             CornerRadius="10"
             Grid.Column="5"
-            Grid.Row="3">
+            Grid.Row="5">
 
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
 
@@ -194,7 +227,7 @@
         
 
         <Button 
-            Grid.Row="5" 
+            Grid.Row="7" 
             Grid.Column="1"
             Grid.ColumnSpan="5"
             Style="{StaticResource ButtonAdd}" Height="{Binding}" Width="{Binding}" Margin="0" HorizontalAlignment="Stretch" Content="Save"  Command="{Binding AddListCommand}" />

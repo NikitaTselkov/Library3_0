@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="MainLibraryWindow"
         MinHeight="600"
@@ -56,24 +57,46 @@
 
             <ScrollViewer VerticalScrollBarVisibility="Hidden" >
 
-                <ItemsControl ItemsSource="{Binding Book.Books}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
+                <Grid>
+                    <ItemsControl ItemsSource="{Binding Book.Books}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
 
-                            <RadioButton
-                                Content="{Binding Title}"
-                                Style="{StaticResource TitleButton}"
-                                GroupName="TitleGroup"
-                                CommandParameter="{Binding Title}"
-                                Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.SelectListCommand}"
-                                IsChecked="{Binding IsChecked}"
-                            />
+                                <RadioButton
+                                    Content="{Binding Title}"
+                                    Style="{StaticResource TitleButton}"
+                                    GroupName="TitleGroup"
+                                    CommandParameter="{Binding Title}"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.SelectListCommand}"
+                                    IsChecked="{Binding IsChecked}">
 
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+
+                                </RadioButton>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
 
             </ScrollViewer>
+
+
+            <Button Content="Add+"
+                    Style="{StaticResource ButtonAdd}"
+                    HorizontalAlignment="Left"
+                    Margin="10"
+                    Foreground="{StaticResource LightRed}"
+                    Command="{Binding SelectListCommand}"
+                    CommandParameter="NewTitle">
+
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="{StaticResource gray}" Offset="0" />
+                        <GradientStop Color="{StaticResource darkRed}" Offset="1" />
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
+
         </StackPanel>
 
         <Grid Grid.Column="1">

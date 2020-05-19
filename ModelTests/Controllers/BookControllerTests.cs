@@ -25,7 +25,7 @@ namespace Model.Controllers.Tests
             var controller = new BookController(Title);
 
             // Act
-            controller.SetNewBookData(_code, _using, _template, _definition, _propertie, _return);
+            controller.SetNewBookData(Title, _code, _using, _template, _definition, _propertie, _return);
             var controller2 = new BookController(Title);
 
             // Assert

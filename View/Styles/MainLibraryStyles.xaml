@@ -45,9 +45,9 @@
                                 <Viewbox Margin="20 10 5 10" HorizontalAlignment="Left">
 
                                     <ContentPresenter
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
                                         Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
                                     />
 
                                 </Viewbox>
