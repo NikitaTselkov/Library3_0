@@ -147,11 +147,14 @@ namespace ViewModel
             {
                 NavigateWindow(WindowsEnum.Exception, ex.ParamName);
 
-                Book = new BookController();
+                Book = new BookController("NewTitle");
+
+                Book.CurrentBook.IsChecked = true;
 
                 RaisePropertyChanged("Book");
 
                 currentBook = null;
+
             }
 
             #endregion
@@ -214,6 +217,7 @@ namespace ViewModel
             }
 
             RaisePropertyChanged("Book");
+
         }
 
         /// <summary>
