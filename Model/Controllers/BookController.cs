@@ -103,7 +103,7 @@ namespace Model.Controllers
             {
                 throw new ArgumentNullException("_template не может быть null", nameof(_template));
             }
-
+            
             #endregion
 
             CurrentBook.Title = _title;

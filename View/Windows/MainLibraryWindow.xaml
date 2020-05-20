@@ -12,6 +12,7 @@
         WindowState="Maximized"
         DataContext="{Binding MainBook, Source={StaticResource Locator}}" >
 
+
     <Grid Background="{StaticResource Gray}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="100" MaxWidth="300" Width="200*"/>
@@ -82,6 +83,7 @@
 
 
             <Button Content="Add+"
+                    Width="150"
                     Style="{StaticResource ButtonAdd}"
                     HorizontalAlignment="Left"
                     Margin="10"
@@ -154,8 +156,13 @@
                                 <DataTemplate>
 
                                     <StackPanel Margin="20 10">
-                                        <TextBlock Text="{Binding Title}" Style="{StaticResource OutputCode}" Foreground="White" />
-                                        <TextBlock Text="{Binding Definition}" Style="{StaticResource OutputCode}"  />
+                                        <TextBlock Text="{Binding Title}" Style="{StaticResource OutputCode}" Foreground="White" FontSize="40" />
+
+                                        <TextBlock Style="{StaticResource OutputCode}">
+                                            <Run Text="return" />
+                                            <Run Text="{Binding Definition}" />
+                                        </TextBlock>
+
                                     </StackPanel>
 
                                 </DataTemplate>

@@ -16,6 +16,7 @@ namespace ViewModel
         public RelayCommand EditListCommand { get; set; } 
         public RelayCommand AddListCommand { get; set; } 
         public RelayCommand RemoveListCommand { get; set; } 
+        public RelayCommand DeletListCommand { get; set; } 
 
         /// <summary>
         /// Главный конструктор.
@@ -27,6 +28,7 @@ namespace ViewModel
             EditListCommand = new RelayCommand(EditListMethod);
             AddListCommand = new RelayCommand(AddListMethod);
             RemoveListCommand = new RelayCommand(RemoveListMethod);
+            DeletListCommand = new RelayCommand(DeletListMethod);
         }
 
         /// <summary>
@@ -63,13 +65,25 @@ namespace ViewModel
         /// <param name="param"> Параметр. </param>
         public void RemoveListMethod(object param)
         {
-            var _title = book.CurrentBook.Title;
+            try
+            {
+                if (book.CurrentBook == null)
+                {
+                    throw new ArgumentNullException(nameof(book.CurrentBook));
+                }
 
-            Book.RemoveBook(_title);
+                var _title = book.CurrentBook.Title;
 
-            RaisePropertyChanged("Book");
+                Book.RemoveBook(_title);
 
-            Book = new BookController();
+                RaisePropertyChanged("Book");
+
+                Book = new BookController();
+            }
+            catch 
+            {
+                NavigateWindow(WindowsEnum.Exception, "Нельзя удалить ничего!");
+            }
         }
 
         /// <summary>
@@ -82,12 +96,65 @@ namespace ViewModel
         }
 
         /// <summary>
+        /// Метод удаления блоков.
+        /// </summary>
+        /// <param name="param"> Параметр. </param>
+        public void DeletListMethod(object param)
+        {
+            CheckListMethod(param, false);
+        }
+
+        /// <summary>
         /// Метод сохранения изменений.
         /// </summary>
         /// <param name="param"> Параметр. </param>
         public void AddListMethod(object param)
         {
+            CheckListMethod(param, true);
+        }
+
+        /// <summary>
+        /// Удаление и добавление блока.
+        /// </summary>
+        /// <param name="param"> Параметр. </param>
+        /// <param name="IsAdd"> Флаг добавления. </param>
+        private void CheckListMethod(object param, bool IsAdd)
+        {
             var currentBook = Book.CurrentBook;
+
+            #region Проверка Условий
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(currentBook.Title))
+                {
+                    throw new ArgumentNullException("Title не может быть null", nameof(currentBook.Title));
+                }
+                if (string.IsNullOrWhiteSpace(currentBook.Code))
+                {
+                    throw new ArgumentNullException("Code не может быть null", nameof(currentBook.Code));
+                }
+                if (string.IsNullOrWhiteSpace(currentBook.Using))
+                {
+                    throw new ArgumentNullException("Using не может быть null", nameof(currentBook.Using));
+                }
+                if (string.IsNullOrWhiteSpace(currentBook.Template))
+                {
+                    throw new ArgumentNullException("Template не может быть null", nameof(currentBook.Template));
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                NavigateWindow(WindowsEnum.Exception, ex.ParamName);
+
+                Book = new BookController();
+
+                RaisePropertyChanged("Book");
+
+                currentBook = null;
+            }
+
+            #endregion
 
             if (currentBook != null)
             {
@@ -100,7 +167,12 @@ namespace ViewModel
                         if (Book.CurrentBook.Definition != null)
                             resultList = Book.CurrentBook.Definition.ToList();
 
-                        resultList.Add(new ListDefinition("", ""));
+                        if(IsAdd == true)
+                            resultList.Add(new ListDefinition("", ""));
+
+                        else if(resultList.Count > 0)
+                            resultList.Remove(resultList.Last());
+
                         currentBook.Definition = resultList;
 
                         break;
@@ -109,7 +181,12 @@ namespace ViewModel
                         if (Book.CurrentBook.Return != null)
                             resultList = Book.CurrentBook.Return.ToList();
 
-                        resultList.Add(new ListDefinition("", ""));
+                        if (IsAdd == true)
+                            resultList.Add(new ListDefinition("", ""));
+
+                        else if (resultList.Count > 0)
+                            resultList.Remove(resultList.Last());
+
                         currentBook.Return = resultList;
 
                         break;
@@ -118,18 +195,22 @@ namespace ViewModel
                         if (Book.CurrentBook.Propertie != null)
                             resultList = Book.CurrentBook.Propertie.ToList();
 
-                        resultList.Add(new ListDefinition("", ""));
+                        if (IsAdd == true)
+                            resultList.Add(new ListDefinition("", ""));
+
+                        else if (resultList.Count > 0)
+                            resultList.Remove(resultList.Last());
+
                         currentBook.Propertie = resultList;
 
                         break;
                     default:
-                            Book.SetNewBookData(currentBook.Title, currentBook.Code, currentBook.Using, currentBook.Template, currentBook.Definition, currentBook.Propertie, currentBook.Return);
-                            Book = new BookController(currentBook.Title);
-                            Book.CurrentBook.IsChecked = true;
-                       
+                        Book.SetNewBookData(currentBook.Title, currentBook.Code, currentBook.Using, currentBook.Template, currentBook.Definition, currentBook.Propertie, currentBook.Return);
+                        Book = new BookController(currentBook.Title);
+                        Book.CurrentBook.IsChecked = true;
+
                         break;
                 }
-
             }
 
             RaisePropertyChanged("Book");

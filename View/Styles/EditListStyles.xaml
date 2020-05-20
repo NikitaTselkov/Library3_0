@@ -57,7 +57,7 @@
     </Style>
 
     <Style x:Key="ButtonAdd" TargetType="Button">
-        <Setter Property="Width" Value="150" />
+        <Setter Property="Width" Value="120" />
         <Setter Property="Height" Value="50" />
         <Setter Property="Background" Value="{StaticResource LightGray}" />
         <Setter Property="Foreground" Value="{StaticResource White}" />
@@ -91,5 +91,41 @@
         </Setter>
     </Style>
 
+    <Style x:Key="RemoveButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="0">
+
+                        <ContentPresenter
+                            x:Name="content"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding Content}"
+                        />
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Width" Value="45" />
+                            <Setter Property="Height" Value="45" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

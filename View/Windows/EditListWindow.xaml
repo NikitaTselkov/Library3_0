@@ -56,12 +56,12 @@
                 />
 
                 <Button
-                    Width="50"
-                    Height="50"
-                    HorizontalAlignment="Right"
-                    Margin="10"
-                    Command="{Binding RemoveListCommand}"
-                />
+                    Style="{StaticResource RemoveButton}"
+                    Command="{Binding RemoveListCommand}">
+
+                    <Image Source="/Icons/DeletImage.png" />
+                    
+                </Button>
 
             </Grid>
             
@@ -102,8 +102,10 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <Button Style="{StaticResource ButtonAdd}" Margin="10" HorizontalAlignment="Left" Content="Add+" Command="{Binding AddListCommand}" CommandParameter="Definition" />
-
+                    <DockPanel>
+                        <Button Style="{StaticResource ButtonAdd}" Margin="10" HorizontalAlignment="Left" Content="Add+"  Command="{Binding AddListCommand}" CommandParameter="Definition" />
+                        <Button Style="{StaticResource ButtonAdd}" Margin="10" HorizontalAlignment="Left" Content="Rmove-"  Command="{Binding DeletListCommand}" CommandParameter="Definition" />
+                    </DockPanel>
 
                 </StackPanel>
                 
@@ -174,7 +176,10 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <Button Style="{StaticResource ButtonAdd}" Margin="10" HorizontalAlignment="Left" Content="Add+"  Command="{Binding AddListCommand}" CommandParameter="Return" />
+                    <DockPanel>
+                        <Button Style="{StaticResource ButtonAdd}" Margin="10" HorizontalAlignment="Left" Content="Add+"  Command="{Binding AddListCommand}" CommandParameter="Return" />
+                        <Button Style="{StaticResource ButtonAdd}" Margin="10" HorizontalAlignment="Left" Content="Rmove-"  Command="{Binding DeletListCommand}" CommandParameter="Return" />
+                    </DockPanel>
 
                 </StackPanel>
 
@@ -216,8 +221,11 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <Button Style="{StaticResource ButtonAdd}" Margin="10" HorizontalAlignment="Left" Content="Add+" Command="{Binding AddListCommand}" CommandParameter="Propertie" />
-
+                    <DockPanel>
+                        <Button Style="{StaticResource ButtonAdd}" Margin="10" HorizontalAlignment="Left" Content="Add+"  Command="{Binding AddListCommand}" CommandParameter="Propertie" />
+                        <Button Style="{StaticResource ButtonAdd}" Margin="10" HorizontalAlignment="Left" Content="Rmove-"  Command="{Binding DeletListCommand}" CommandParameter="Propertie" />
+                    </DockPanel>
+                    
                 </StackPanel>
 
             </ScrollViewer>
