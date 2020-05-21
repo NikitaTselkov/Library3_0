@@ -22,6 +22,12 @@
 
     <Color x:Key="lightRed">#AA8C8D</Color>
     <SolidColorBrush  x:Key="LightRed" Color="{StaticResource lightRed}" />
-    
+
+    <Color x:Key="yelow">#C5962A</Color>
+    <SolidColorBrush  x:Key="Yelow" Color="{StaticResource yelow}" />
+
+    <Color x:Key="lightYelow">#C4AD77</Color>
+    <SolidColorBrush  x:Key="LightYelow" Color="{StaticResource lightYelow}" />
+
 
 </ResourceDictionary>

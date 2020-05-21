@@ -11,6 +11,7 @@
     <None Remove="Icons\DeletImage.png" />
     <None Remove="Icons\Editing.png" />
     <None Remove="Icons\Exception.png" />
+    <None Remove="Icons\WPFLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Icons\Exception.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\WPFLogo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

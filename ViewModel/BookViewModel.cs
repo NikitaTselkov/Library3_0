@@ -17,6 +17,7 @@ namespace ViewModel
         public RelayCommand AddListCommand { get; set; } 
         public RelayCommand RemoveListCommand { get; set; } 
         public RelayCommand DeletListCommand { get; set; } 
+        public RelayCommand SelectGroupCommand { get; set; }
 
         /// <summary>
         /// Главный конструктор.
@@ -29,6 +30,7 @@ namespace ViewModel
             AddListCommand = new RelayCommand(AddListMethod);
             RemoveListCommand = new RelayCommand(RemoveListMethod);
             DeletListCommand = new RelayCommand(DeletListMethod);
+            SelectGroupCommand = new RelayCommand(SelectGroupMethod);
         }
 
         /// <summary>
@@ -38,6 +40,23 @@ namespace ViewModel
         public void GoToSelectUserMethod(object param)
         {
             NavigateWindow(WindowsEnum.SelectUser);
+        }
+
+        /// <summary>
+        /// Метод выбора группы.
+        /// </summary>
+        /// <param name="param"> Параметр. </param>
+        public void SelectGroupMethod(object param)
+        {
+            param = Convert.ToInt32(param);
+
+            if (Book.CurrentBook != null)
+            {
+
+                Book.CurrentBook.Group = (ListGroups)param;
+
+                RaisePropertyChanged("Book");
+            }
         }
 
         /// <summary>
@@ -126,21 +145,25 @@ namespace ViewModel
 
             try
             {
-                if (string.IsNullOrWhiteSpace(currentBook.Title))
+                if (currentBook != null)
                 {
-                    throw new ArgumentNullException("Title не может быть null", nameof(currentBook.Title));
-                }
-                if (string.IsNullOrWhiteSpace(currentBook.Code))
-                {
-                    throw new ArgumentNullException("Code не может быть null", nameof(currentBook.Code));
-                }
-                if (string.IsNullOrWhiteSpace(currentBook.Using))
-                {
-                    throw new ArgumentNullException("Using не может быть null", nameof(currentBook.Using));
-                }
-                if (string.IsNullOrWhiteSpace(currentBook.Template))
-                {
-                    throw new ArgumentNullException("Template не может быть null", nameof(currentBook.Template));
+
+                    if (string.IsNullOrWhiteSpace(currentBook.Title))
+                    {
+                        throw new ArgumentNullException("Title не может быть null", nameof(currentBook.Title));
+                    }
+                    if (string.IsNullOrWhiteSpace(currentBook.Code))
+                    {
+                        throw new ArgumentNullException("Code не может быть null", nameof(currentBook.Code));
+                    }
+                    if (string.IsNullOrWhiteSpace(currentBook.Using))
+                    {
+                        throw new ArgumentNullException("Using не может быть null", nameof(currentBook.Using));
+                    }
+                    if (string.IsNullOrWhiteSpace(currentBook.Template))
+                    {
+                        throw new ArgumentNullException("Template не может быть null", nameof(currentBook.Template));
+                    }
                 }
             }
             catch (ArgumentNullException ex)

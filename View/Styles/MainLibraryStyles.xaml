@@ -2,7 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:View.Styles">
 
-    <BitmapImage x:Key="Logo" UriSource="/Icons/CSharpLogo.png" />
+    <!--<BitmapImage x:Key="Logo" UriSource="/Icons/CSharpLogo.png" />
+    <BitmapImage x:Key="WPFLogo" UriSource="/Icons/WPFLogo.png" />
+
 
     <Style x:Key="TitleButton" TargetType="RadioButton">
         <Setter Property="Background" Value="{StaticResource DarkGray}" />
@@ -85,7 +87,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
     <Style x:Key="OutputCode" TargetType="TextBlock">
         <Setter Property="FontSize" Value="30" />

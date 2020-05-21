@@ -63,6 +63,32 @@
                     
                 </Button>
 
+                <DockPanel>
+
+                    <Button
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource RemoveButton}"
+                    Command="{Binding SelectGroupCommand}"
+                    CommandParameter="0"
+                    Background="Transparent">
+
+                        <Image Source="/Icons/CSharpLogo.png" />
+
+                    </Button>
+
+                    <Button
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource RemoveButton}"
+                    Command="{Binding SelectGroupCommand}"
+                    CommandParameter="1"
+                    Background="Transparent">
+
+                        <Image Source="/Icons/WPFLogo.png" />
+
+                    </Button>
+
+                </DockPanel>
+
             </Grid>
             
         </Border>
@@ -129,9 +155,9 @@
                     <Viewbox VerticalAlignment="Top">
                         <StackPanel>
 
-                            <TextBox x:Name="Using" Style="{StaticResource InputText}" Tag="Using Имя;" Text="{Binding Book.CurrentBook.Using}" />
-                            <TextBox x:Name="Template" Style="{StaticResource InputText}" Tag="Шаблон записи" Text="{Binding Book.CurrentBook.Template}" />
-                            <TextBox x:Name="Code" Style="{StaticResource InputText}" Tag="Код" Text="{Binding Book.CurrentBook.Code}" />
+                            <TextBox Style="{StaticResource InputText}" Tag="Using Имя;" Text="{Binding Book.CurrentBook.Using}" />
+                            <TextBox Style="{StaticResource InputText}" Tag="Шаблон записи" Text="{Binding Book.CurrentBook.Template}" />
+                            <TextBox Style="{StaticResource InputText}" Tag="Код" Text="{Binding Book.CurrentBook.Code}" />
 
                         </StackPanel>
                     </Viewbox>

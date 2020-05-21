@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:View"
+        xmlns:UserC="clr-namespace:View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="MainLibraryWindow"
@@ -11,7 +11,6 @@
         MinWidth="1000"
         WindowState="Maximized"
         DataContext="{Binding MainBook, Source={StaticResource Locator}}" >
-
 
     <Grid Background="{StaticResource Gray}">
         <Grid.ColumnDefinitions>
@@ -58,26 +57,146 @@
 
             <ScrollViewer VerticalScrollBarVisibility="Hidden" >
 
-                <Grid>
-                    <ItemsControl ItemsSource="{Binding Book.Books}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
+                <ItemsControl ItemsSource="{Binding Book.Books}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
 
-                                <RadioButton
-                                    Content="{Binding Title}"
-                                    Style="{StaticResource TitleButton}"
-                                    GroupName="TitleGroup"
-                                    CommandParameter="{Binding Title}"
-                                    Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.SelectListCommand}"
-                                    IsChecked="{Binding IsChecked}">
+                            <RadioButton
+                                 x:Name="RadioB"
+                                 Content="{Binding Title}"
+                                 Foreground="{StaticResource MediumGray}"
+                                 Background="{StaticResource DarkGray}"
+                                 GroupName="{Binding Group}"
+                                 FontSize="60"
+                                 Height="100"
+                                 Command="{Binding  RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.SelectListCommand}"
+                                 CommandParameter="{Binding Title}" 
+                                 IsChecked="{Binding IsChecked}">
 
+                                <RadioButton.Template>
+                                    <ControlTemplate TargetType="RadioButton">
 
-                                </RadioButton>
+                                        <Border
+                                                x:Name="border"
+                                                Height="{TemplateBinding Height}"
+                                                Background="{TemplateBinding Background}"
+                                                BorderThickness="0"
+                                                BorderBrush="Transparent"
+                                                HorizontalAlignment="Stretch">
 
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </Grid>
+                                            <Grid>
+
+                                                <Rectangle x:Name="rect"
+                                                           Width="0"
+                                                           HorizontalAlignment="Left"
+                                                           IsHitTestVisible="False">
+
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush>
+                                                            <GradientStop Color="{StaticResource darkGray}" Offset="0" />
+                                                            <GradientStop Color="{StaticResource darkRed}" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+
+                                                </Rectangle>
+
+                                                <DockPanel x:Name="content">
+
+                                                    <Image x:Name="logo" Source="{StaticResource Logo}" Width="65" Height="65" Margin="15 0" />
+
+                                                    <Viewbox Margin="20 10 5 10" HorizontalAlignment="Left">
+
+                                                        <TextBlock
+                                                            x:Name="TextB"
+                                                            Text="{TemplateBinding Content}"
+                                                            HorizontalAlignment="Left"
+                                                            VerticalAlignment="Center"
+                                                            Foreground="{TemplateBinding Foreground}"/>
+
+                                                    </Viewbox>
+
+                                                </DockPanel>
+
+                                            </Grid>
+
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsChecked" Value="True" />
+                                                    <Condition Property="GroupName" Value="WPF" />
+                                                </MultiTrigger.Conditions>
+                                                <MultiTrigger.Setters>
+                                                    <Setter TargetName="logo" Property="Visibility" Value="Collapsed" />
+                                                    <Setter TargetName="content" Property="HorizontalAlignment" Value="Center" />
+                                                    <Setter TargetName="TextB" Property="Foreground" Value="{StaticResource LightYelow}" />
+                                                </MultiTrigger.Setters>
+                                                <MultiTrigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+
+                                                            <DoubleAnimation
+                                                                    Storyboard.TargetName="rect"
+                                                                    Storyboard.TargetProperty="Width"
+                                                                    From="0"
+                                                                    To="350"
+                                                                    Duration="0:0:0.2" />
+
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </MultiTrigger.EnterActions>
+                                            </MultiTrigger>
+
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsChecked" Value="True" />
+                                                    <Condition Property="GroupName" Value="C_Sharp" />
+                                                </MultiTrigger.Conditions>
+                                                <MultiTrigger.Setters>
+                                                    <Setter TargetName="logo" Property="Visibility" Value="Collapsed" />
+                                                    <Setter TargetName="content" Property="HorizontalAlignment" Value="Center" />
+                                                    <Setter TargetName="TextB" Property="Foreground" Value="{StaticResource LightRed}" />
+                                                </MultiTrigger.Setters>
+                                                <MultiTrigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+
+                                                            <DoubleAnimation
+                                                                    Storyboard.TargetName="rect"
+                                                                    Storyboard.TargetProperty="Width"
+                                                                    From="0"
+                                                                    To="350"
+                                                                    Duration="0:0:0.2" />
+
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </MultiTrigger.EnterActions>
+                                            </MultiTrigger>
+
+                                            <Trigger Property="GroupName" Value="WPF">
+                                                <Setter TargetName="logo" Property="Source" Value="{StaticResource WPFLogo}" />
+                                                <Setter Property="Foreground" Value="{StaticResource LightRed}" />
+                                                <Setter TargetName="rect" Property="Fill">
+                                                    <Setter.Value>
+                                                        <LinearGradientBrush>
+                                                            <GradientStop Color="{StaticResource darkGray}" Offset="0" />
+                                                            <GradientStop Color="{StaticResource yelow}" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+
+                                        </ControlTemplate.Triggers>
+
+                                    </ControlTemplate>
+                                </RadioButton.Template>
+                            </RadioButton>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
             </ScrollViewer>
 
@@ -259,7 +378,7 @@
             <Label
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Content="C# Library"
+                Content="WPF C# Library"
                 Foreground="{StaticResource White}"
                 FontSize="70"
                 Margin="30 10 0 0" 

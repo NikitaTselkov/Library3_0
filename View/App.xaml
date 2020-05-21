@@ -10,6 +10,10 @@
     <Application.Resources>
         <ResourceDictionary >
 
+            <BitmapImage x:Name="LOGO" x:Key="Logo" UriSource="/Icons/CSharpLogo.png" />
+
+            <BitmapImage x:Key="WPFLogo" UriSource="/Icons/WPFLogo.png" />
+
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:ViewModel.Navigation;assembly=ViewModel" />
 
             <ResourceDictionary.MergedDictionaries>
