@@ -1,5 +1,7 @@
-﻿using Model.BookFolder;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Model.BookFolder;
 using Model.Controllers;
+using Model.UserFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,11 @@ namespace ViewModel
 {
     public class BookViewModel : NavigateViewModel
     {
+        /// <summary>
+        /// Visibility кнопок редактирования.
+        /// </summary>
+        public Visibility IsAdmin { get; set; }
+
 
         public RelayCommand SelectListCommand { get; set; } 
         public RelayCommand SelectUserCommand { get; set; } 
@@ -31,6 +38,37 @@ namespace ViewModel
             RemoveListCommand = new RelayCommand(RemoveListMethod);
             DeletListCommand = new RelayCommand(DeletListMethod);
             SelectGroupCommand = new RelayCommand(SelectGroupMethod);
+
+            NavigationSetup();
+        }
+
+        private void NavigationSetup()
+        {
+            Messenger.Default.Register<NavigateUserArgs>(this, (x) =>
+            {
+                CheckAccess(x.CurrentUser);
+            });
+        }
+
+        /// <summary>
+        /// Метод проверки уровня доступа.
+        /// </summary>
+        /// <param name="param"> Параметр. </param>
+        public void CheckAccess(User currentUser)
+        {
+            if (currentUser != null)
+            {
+                if (currentUser.Access == Access.User)
+                {
+                    IsAdmin = Visibility.Collapsed;
+                }
+                if (currentUser.Access == Access.Admin)
+                {
+                    IsAdmin = Visibility.Visible;
+                }
+
+                RaisePropertyChanged("IsAdmin");
+            }
         }
 
         /// <summary>
@@ -257,6 +295,5 @@ namespace ViewModel
             }
         }
 
-        
     }
 }

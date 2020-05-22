@@ -81,9 +81,14 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
+                        
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="FontSize" Value="25" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding IsAdmin}" Value="Collapsed">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        
                     </ControlTemplate.Triggers>
 
                 </ControlTemplate>

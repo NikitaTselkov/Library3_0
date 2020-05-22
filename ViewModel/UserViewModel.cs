@@ -112,7 +112,6 @@ namespace ViewModel
             Register = new RelayCommand(RegisterMethod);
             GoToRegister = new RelayCommand(GoToRegisterMethod);
             SelectGender = new RelayCommand(SelectGenderMethod);
-
         }
 
         #region Методы
@@ -157,6 +156,8 @@ namespace ViewModel
                 else
                 {
                     NavigateWindow(WindowsEnum.Library);
+
+                    NavigateCurrentUser(User.CurrentUser);
                 }
             }
         }
@@ -200,17 +201,35 @@ namespace ViewModel
 
             if (isException == false)
             {
+                CheckNameAdmins(Name);
+
                 User = new UserController(Name, Pasword);
                 if (User.IsNewUser)
                 {
                     User.SetNewUserData(LastName, Age, Gender, Access);
                     NavigateWindow(WindowsEnum.Library);
+
+                    NavigateCurrentUser(User.CurrentUser);
                 }
                 else
                 {
                     NavigateWindow(WindowsEnum.Exception, "Такой пользователь существует!");
                 }
-                
+            }
+        }
+
+        /// <summary>
+        /// Метод проверки имени.
+        /// </summary>
+        private void CheckNameAdmins(string name)
+        {
+            var result = name.IndexOf(" Admin");
+
+            if (result > 0)
+            {
+                Access = Access.Admin;
+
+               Name = name.Remove(result);
             }
         }
 
