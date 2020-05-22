@@ -10,9 +10,6 @@
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
-    
-
-    
 
     <Style x:Key="ScrollBarThumbStyle" TargetType="{x:Type Thumb}">
         <Setter Property="IsTabStop" Value="False"/>

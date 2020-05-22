@@ -64,7 +64,7 @@
 
             <ScrollViewer
                 MaxHeight="{Binding RelativeSource={RelativeSource AncestorType=StackPanel, Mode=FindAncestor}, Path=ActualHeightf}"
-                VerticalScrollBarVisibility="Visible"
+                VerticalScrollBarVisibility="Auto"
                 Grid.Row="1"
                 Margin="0 10">
 
@@ -94,6 +94,7 @@
                                                 Height="{TemplateBinding Height}"
                                                 Background="{TemplateBinding Background}"
                                                 BorderThickness="0"
+                                                Margin="0"
                                                 BorderBrush="Transparent"
                                                 HorizontalAlignment="Stretch">
 

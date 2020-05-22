@@ -158,7 +158,7 @@ namespace ViewModel
         /// <param name="param"> Параметр. </param>
         public void DeletListMethod(object param)
         {
-            CheckListMethod(param, false);
+            CheckListMethod(param, false, false, 0);
         }
 
         /// <summary>
@@ -167,7 +167,52 @@ namespace ViewModel
         /// <param name="param"> Параметр. </param>
         public void AddListMethod(object param)
         {
-            CheckListMethod(param, true);
+            bool IsRepeat = false;
+            var CountRepeat = 0;
+            bool IsWork = true;
+
+            foreach (var List in Book.Books)
+            {
+                string title = List.Title;
+
+                if (title == Book.CurrentBook.Title)
+                {
+                    CountRepeat++;
+                    if (CountRepeat > 1)
+                    {
+                        var repeat2 = 0;
+                        while (IsWork)
+                        {
+                            if (Book.Books.FirstOrDefault(f => f.Title == title) != null) 
+                            {
+                                
+                                if (repeat2 > 0)
+                                {
+                                   title = title.Remove(title.Length - 1);
+
+                                    if (repeat2 > 8)
+                                    {
+                                        title = title.Remove(title.Length - 1);
+                                    }
+                                }
+                                repeat2++;
+
+                                title += CountRepeat;
+                                CountRepeat ++;
+                            }
+                            else
+                            {
+                                IsRepeat = true;
+                                IsWork = false;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+             CheckListMethod(param, true, IsRepeat, CountRepeat);
+
         }
 
         /// <summary>
@@ -175,7 +220,7 @@ namespace ViewModel
         /// </summary>
         /// <param name="param"> Параметр. </param>
         /// <param name="IsAdd"> Флаг добавления. </param>
-        private void CheckListMethod(object param, bool IsAdd)
+        private void CheckListMethod(object param, bool IsAdd, bool isRepeat, int countRepeat)
         {
             var currentBook = Book.CurrentBook;
 
@@ -269,6 +314,12 @@ namespace ViewModel
 
                         break;
                     default:
+
+                        if (isRepeat == true)
+                        {
+                            currentBook.Title += countRepeat - 1;
+                        }
+
                         Book.SetNewBookData(currentBook.Title, currentBook.Code, currentBook.Using, currentBook.Template, currentBook.Definition, currentBook.Propertie, currentBook.Return);
                         Book = new BookController(currentBook.Title);
                         Book.CurrentBook.IsChecked = true;
